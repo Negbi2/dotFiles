@@ -1,0 +1,5 @@
+prompt= Choose app
+color=.config/wofi/colors
+allow_images=true
+insensitive=true
+no_actions=true

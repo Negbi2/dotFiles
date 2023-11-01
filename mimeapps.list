@@ -1,0 +1,4 @@
+
+[Default Applications]
+x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
+image/jpeg=sxiv.desktop
