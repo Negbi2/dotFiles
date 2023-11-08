@@ -1,0 +1,42 @@
+.bar {
+    color: white;
+    background-color: #111111;
+    border: 1.5px solid;
+    border-color: #c9c8f7;
+    border-radius: 3px;
+}
+
+.right {
+    padding-right: 5px;
+}
+
+.time {
+    font-weight: bolder;
+}
+
+.music {
+    background-color: blue;
+}
+
+button {
+    background-color: red;
+    margin: 0px;
+}
+
+.workspace-entry {
+    padding-left: 15px;
+    font-size: 17;
+}
+
+.empty {
+    color: green;
+}
+
+.occupied {
+    color: blue;
+}
+
+.current {
+    color: red;
+}
+
