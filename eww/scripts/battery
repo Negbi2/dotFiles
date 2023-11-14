@@ -1,17 +1,48 @@
 #!/bin/bash
 
-battery() {
-	BAT=`ls /sys/class/power_supply | grep BAT | head -n 1`
-	cat /sys/class/power_supply/${BAT}/capacity
-}
-battery_stat() {
-	BAT=`ls /sys/class/power_supply | grep BAT | head -n 1`
-	cat /sys/class/power_supply/${BAT}/status
-}
-
-if [[ "$1" == "--bat" ]]; then
-	battery
-elif [[ "$1" == "--bat-st" ]]; then
-	battery_stat
+BAT=`ls /sys/class/power_supply | grep BAT | head -n 1`
+batteryNum=$(cat /sys/class/power_supply/${BAT}/capacity)
+batteryStatus=$(cat /sys/class/power_supply/${BAT}/status)
+batteryRange=$(($batteryNum / 10))
+if [[ $batteryStatus == "Charging" ]]; then
+    batteryRange=2435
 fi
 
+case $batteryRange in
+    0) 
+        echo "$batteryNum% 󰂎"
+        ;;
+    1) 
+        echo "$batteryNum% 󰁺"
+        ;;
+    2) 
+        echo "$batteryNum% 󰁻"
+        ;;
+    3) 
+        echo "$batteryNum% 󰁼"
+        ;;
+    4) 
+        echo "$batteryNum% 󰁽"
+        ;;
+    5) 
+        echo "$batteryNum% 󰁾"
+        ;;
+    6) 
+        echo "$batteryNum% 󰁿"
+        ;;
+    7) 
+        echo "$batteryNum% 󰂀"
+        ;;
+    8) 
+        echo "$batteryNum% 󰂁"
+        ;;
+    9)
+        echo "$batteryNum% 󰂂"
+        ;;
+    10)
+        echo "$batteryNum% 󰁹"
+        ;;
+    *)
+        echo "$batteryNum% 󰂄"
+        ;;
+esac
