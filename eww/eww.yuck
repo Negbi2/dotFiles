@@ -6,7 +6,7 @@
     :geometry (geometry :x "0px"
                         :y "4px"
                         :width "95%"
-                        :height "30px"
+                        :height "20px"
                         :anchor "bottom center")
     :namespace "bar"
     :exclusive true
@@ -31,23 +31,25 @@
 (deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace")
 
 ;; Polls
-(defpoll time_value :interval "1s" "date +%H:%M")
+(defpoll time_poll :interval "1s" "date +%H:%M")
+(defpoll battery_poll :interval "1s" "bash ./scripts/battery")
 
 ;; Widgets
 
 (defwidget right []
     (box 
         :class "right"
-        :spacing 5
+        :spacing 7
         :space-evenly false
         :halign "end"
-        (volume)
-        (time)
+        "" (battery) 
+        "" (time) 
     )
 )
 
 (defwidget volume []
     (scale
+        :class "slider"
         :width 110
         :min 0
         :max 101
@@ -57,13 +59,15 @@
 (defwidget time []
     (box 
         :class "time"
-        :height "10px"
-        (label
-            :text "󰅐"
-            :css "font-size: 17"
-        )
+        :vexpand false
+        "${time_poll} 󰅐 "
+    )
+)
 
-        "${time_value}"
+(defwidget battery []
+    (box
+        :class "battery"
+        "${battery_poll}"
     )
 )
 
@@ -81,12 +85,14 @@
     )
 )
 
+
 (defwidget workspaces []
     (eventbox 
         :class "workspaces-widget"
+        :halign "start"
         (box
+            :halign "end"
             :space-evenly false
-            :spacing 20
             (label 
                 :text "${workspaces}${current_workspace}" 
                 :visible false)
@@ -100,6 +106,7 @@
                     )
                 )
             )
+
         )
     )
 )

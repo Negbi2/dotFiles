@@ -1,26 +1,42 @@
+* {
+    /* all: unset; */
+}
+
 .bar {
     color: white;
-    background-color: #111111;
     border: 1.5px solid;
     border-color: #c9c8f7;
     border-radius: 3px;
+    background-color: transparent;
 }
 
+
 .right {
-    padding-right: 5px;
+    background-color: rebeccapurple;
+    border: 1.5px solid;
+    margin: 8px;
 }
 
 .time {
     font-weight: bolder;
+    background-color: red;
 }
 
 .music {
     background-color: blue;
 }
 
+.slider {
+    color: red;
+    background-color: red;
+    opacity: 0.7;
+}
+
 button {
     background-color: red;
-    margin: 0px;
+}
+
+.workspaces-widget {
 }
 
 .workspace-entry {
@@ -29,7 +45,7 @@ button {
 }
 
 .empty {
-    color: green;
+    color: transparent;
 }
 
 .occupied {
