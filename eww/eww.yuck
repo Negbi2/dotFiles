@@ -88,11 +88,10 @@
 
 (defwidget workspaces []
     (eventbox 
-        :class "workspaces-widget"
         :halign "start"
         (box
-            :halign "end"
-            :space-evenly false
+            :class "workspaces-widget"
+            :space-evenly true
             (label 
                 :text "${workspaces}${current_workspace}" 
                 :visible false)
