@@ -1,5 +1,4 @@
 ;; Windows
-
 (defwindow bar
     :class "bar"
     :monitor 0
@@ -17,13 +16,19 @@
     )
 )
 
-(defwindow par
-    :class "hi"
+(defwindow big-time
+    :class "big-time"
     :monitor 0
-    :geometry (geometry :width "300px"
-                        :height "300px"
+    :namespace "big-time"
+    :stacking "bg"
+    :geometry (geometry :x "40px"
+                        :y "30px"
+                        :width "300px"
+                        :height "120px"
                         :anchor "top right")
-    (right)
+    (box
+        (big-time)
+    )
 )
 
 ;; Listeners
@@ -55,6 +60,13 @@
         :max 101
     )
 )
+
+(defwidget big-time []
+    (box
+        "${time_poll}"
+    )
+)
+
 
 (defwidget time []
     (box 
