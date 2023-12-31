@@ -47,17 +47,38 @@
         :spacing 7
         :space-evenly false
         :halign "end"
-        "" (battery) 
+        " " (battery) 
         "" (time) 
     )
 )
 
 (defwidget volume []
-    (scale
-        :class "slider"
-        :width 110
-        :min 0
-        :max 101
+    (box
+    :style "all: unset;"
+        (scale
+            :width 110
+            :min 0
+            :max 101
+        )
+    )
+)
+
+(defwidget metric [label value onchange]
+    (box 
+        :orientation "h"
+        :class "metric"
+        :style "all: unset; color: red;"
+        :space-evenly false
+
+        (box :class "label" label)
+
+        (scale 
+            :min 0
+            :max 101
+            :active {onchange != ""}
+            :value value
+            :onchange onchange
+        )
     )
 )
 
