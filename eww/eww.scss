@@ -1,0 +1,54 @@
+/*
+    color reference
+    accent:     #f9ac25
+*/
+
+* {
+  all: unset; //Unsets everything so you can style everything from scratch
+}
+
+//Global Styles
+.bar {
+  font-size: 16;
+  color: #4e4e4e;
+}
+
+.brr:hover {
+  border: 1.5px solid #f9ac25;
+  border-radius: 10px;
+}
+
+.right {
+  padding-right: 5px;
+}
+
+.sidestuff slider {
+  all: unset;
+  color: #f9ac25;
+}
+
+.metric scale trough highlight {
+  background-color: #f9ac25;
+}
+
+.metric scale trough {
+  all: unset;
+  background-color: #4e4e4e;
+  border-radius: 10px;
+  min-height: 5px;
+  min-width: 80px;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+
+.workspace-entry {
+  padding-left: 10px;
+  padding-right: 1px;
+  opacity: 0.65;
+  font-size: 15;
+}
+
+.current {
+  color: #f9ac25;
+  opacity: 1;
+}

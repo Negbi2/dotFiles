@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/usr/bin/env bash
 function clamp {
 	min=$1
 	max=$2
@@ -19,4 +19,3 @@ then
 	echo "jumping to $target"
 	hyprctl dispatch workspace $target
 fi
-

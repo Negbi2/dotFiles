@@ -3,16 +3,18 @@
     :class "bar"
     :monitor 0
     :geometry (geometry :x "0px"
-                        :y "4px"
-                        :width "95%"
-                        :height "20px"
+                        :y "0px"
+                        :width "135%"
+                        :height "23px"
                         :anchor "bottom center")
-    :namespace "bar"
     :exclusive true
     
-    (box
-        (workspaces)
-        (right)
+    (eventbox
+        :class "brr"
+        (box
+            (workspaces)
+            (right)
+        )
     )
 )
 
@@ -37,9 +39,13 @@
 
 ;; Polls
 (defpoll time_poll :interval "1s" "date +%H:%M")
-(defpoll battery_poll :interval "1s" "bash ./scripts/battery")
+(defpoll battery_poll :interval "1s" "./scripts/battery")
+(defpoll volume_poll :interval "100ms" "./scripts/volume")
 
 ;; Widgets
+
+;; (defwidget bar []
+;; )
 
 (defwidget right []
     (box 
@@ -47,30 +53,51 @@
         :spacing 7
         :space-evenly false
         :halign "end"
-        " " (battery) 
+        " " (volume) 
+        "" (battery) 
         "" (time) 
     )
 )
 
-(defwidget volume []
-    (box
-    :style "all: unset;"
-        (scale
-            :width 110
-            :min 0
+(defwidget metric [label value onchange onclick]
+    (box :orientation "h"
+        :class "metric"
+        :space-evenly false
+        (box :class "label" label)
+        (scale :min 0
             :max 101
+            :active {onchange != ""}
+            :value value
+            :onchange onchange
+            :onclick onclick
         )
     )
 )
 
-(defwidget metric [label value onchange]
+
+(defwidget volume []
+    (eventbox
+        (box
+            (metric :label "󰕾"
+             :value volume_poll
+             :onchange "pamixer --set-volume {}"
+             :onclick "pamixer -t"
+            )
+        )
+    )
+)
+
+(defwidget metric [label value onchange ?onclick]
     (box 
         :orientation "h"
         :class "metric"
-        :style "all: unset; color: red;"
+        :style "all: unset;"
         :space-evenly false
 
-        (box :class "label" label)
+        (eventbox
+            :onclick onclick
+            (box :class "label" label)
+        )
 
         (scale 
             :min 0
